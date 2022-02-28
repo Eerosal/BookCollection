@@ -1,0 +1,98 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+.app {
+    width: 100%;
+    max-width: 1020px;
+    min-height: 100%;
+
+    padding: 5px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+
+    font-family: Arial, sans-serif;
+}
+
+.app-section {
+    padding: 25px;
+    margin-left: 5px;
+    border: black 1px dashed;
+    flex-grow: 1;
+    max-width: 50%;
+}
+
+.app-section > * {
+    padding: 0;
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+    .app {
+        margin-top: 0;
+
+        flex-direction: column;
+    }
+
+    .app-section {
+        margin-top: 5px;
+        max-width: 100%;
+    }
+}
+
+.editor-input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.editor-input-description {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.editor-button {
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.book-list-container {
+    margin-top: 10px;
+
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.book-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.book-list-entry {
+    padding-left: 3px;
+    cursor: pointer;
+    margin-bottom: 5px;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.book-list-entry > div {
+    border-bottom: black solid 1px;
+}
+
+.book-list-entry-selected > div {
+    background-color: #dbdbdb;
+}
+
+.book-list-entry-selected {
+    text-decoration: underline;
+}

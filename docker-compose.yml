@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      SPRING_APPLICATION_JSON: '{
+            "bc.database.jdbc-url": "${DB_JDBC_URL}",
+            "bc.database.username": "${DB_USERNAME}",
+            "bc.database.password": "${DB_PASSWORD}"
+          }'
+    ports:
+      - "127.0.0.1:8080:8080"
+  frontend:
+    depends_on:
+      - "backend"
+    build:
+      context: ./frontend
+    environment:
+      BACKEND_URL: "http://backend:8080"
+    ports:
+      - "${HTTP_PORT}:80"
