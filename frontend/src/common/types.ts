@@ -4,3 +4,6 @@ export interface Book {
   author: string,
   description: string
 }
+
+export class BookNotFoundError extends Error {
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import { ToastContainer, toast } from 'react-toastify';
-import { Book } from './common/types';
+import { Book, BookNotFoundError } from './common/types';
 import bookService from './service/bookService';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -119,6 +119,11 @@ function App() {
       }));
     } catch (e) {
       showError(toastId, e);
+
+      if (e instanceof BookNotFoundError) {
+        setSelectedBookId(-1);
+        await updateBookList();
+      }
       return;
     }
 
@@ -134,11 +139,15 @@ function App() {
       setBookList(
         (currentList) => currentList.filter((listBook) => listBook.id !== selectedBookId),
       );
-
-      setSelectedBookId(-1);
     } catch (e) {
       showError(toastId, e);
+
+      if (e instanceof BookNotFoundError) {
+        await updateBookList();
+      }
       return;
+    } finally {
+      setSelectedBookId(-1);
     }
 
     showSuccess(toastId, 'Book was deleted');
